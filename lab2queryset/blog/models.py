@@ -1,7 +1,7 @@
 from datetime import date
 from django.db import models
 import datetime
-
+import pickle
 
 class Blog(models.Model):
     name = models.CharField(max_length=100)
@@ -32,10 +32,31 @@ class Entry(models.Model):
    
     def __str__(self):
         return self.headline
-    
+class EntryDetail(models.Model):
+    entry = models.OneToOneField(Entry, on_delete=models.CASCADE)
+    details = models.TextField()
+       
 class Dog(models.Model):
     name = models.CharField(max_length=200)
     data = models.JSONField(null=True)
 
     def __str__(self):
         return self.name
+    
+class Poll(models.Model):
+    question = models.CharField(max_length=200)
+    pub_date = models.DateField()
+
+    def __str__(self):
+        return self.question
+
+class Event(models.Model):
+    parent = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        related_name="children",
+    )
+    date = models.DateField()
+
+    def __str__(self):
+        return f"Event on {self.date}"
