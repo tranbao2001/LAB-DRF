@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lưu trữ tháng {{ month }} năm {{ year }}</title>
+</head>
+<body>
+    <h1>Lưu trữ bài viết tháng {{ month }} năm {{ year }}</h1>
+    <ul>
+        {% for post in posts %}
+            <li><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></li>
+        {% empty %}
+            <li>Không có bài viết nào cho tháng này.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'year_archive' year %}">Trở về lưu trữ năm {{ year }}</a>
+</body>
+</html>

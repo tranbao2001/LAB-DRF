@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tạo bài viết mới</title>
+</head>
+<body>
+    <h1>Tạo bài viết mới</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="title">Tiêu đề:</label><br>
+        <input type="text" id="title" name="title" required><br>
+        <label for="content">Nội dung:</label><br>
+        <textarea id="content" name="content" required></textarea><br>
+        <button type="submit">Tạo bài viết</button>
+    </form>
+    <a href="{% url 'index' %}">Trở về trang chủ</a>
+</body>
+</html>
